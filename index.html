@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حساب العمر</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      direction: rtl;
+    }
+    input, button {
+      font-size: 16px;
+      padding: 10px;
+      margin: 10px;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>حاسبة العمر</h1>
+  <label for="birthdate">أدخل تاريخ ميلادك:</label>
+  <input type="date" id="birthdate">
+  <button onclick="calculateAge()">احسب العمر</button>
+  <p id="result"></p>
+
+  <script>
+    function calculateAge() {
+      const birthdate = document.getElementById('birthdate').value;
+      if (!birthdate) {
+        document.getElementById('result').innerText = 'يرجى إدخال تاريخ الميلاد.';
+        return;
+      }
+
+      const birthDate = new Date(birthdate);
+      const today = new Date();
+      
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      const dayDiff = today.getDate() - birthDate.getDate();
+
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+      }
+
+      document.getElementById('result').innerText = عمرك هو ${age} سنة;
+    }
+  </script>
+
+</body>
+</html>
